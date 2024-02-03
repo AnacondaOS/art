@@ -922,6 +922,10 @@ art_cc_library {
                 thin: true,
             },
         },
+        android_arm64: {
+            cflags: ["-fsplit-machine-functions"],
+            ldflags: ["-fsplit-machine-functions"],
+        }
     },
 }
 
