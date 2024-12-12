@@ -129,7 +129,7 @@ enum HomogeneousSpaceCompactResult {
 static constexpr bool kUseRosAlloc = true;
 
 // If true, use thread-local allocation stack.
-static constexpr bool kUseThreadLocalAllocationStack = true;
+static constexpr bool kUseThreadLocalAllocationStack = false;
 
 class Heap {
  public:
@@ -1255,7 +1255,7 @@ class Heap {
   void PushOnAllocationStack(Thread* self, ObjPtr<mirror::Object>* obj)
       REQUIRES_SHARED(Locks::mutator_lock_)
       REQUIRES(!*gc_complete_lock_, !*pending_task_lock_, !process_state_update_lock_);
-  void PushOnAllocationStackWithInternalGC(Thread* self, ObjPtr<mirror::Object>* obj)
+  EXPORT void PushOnAllocationStackWithInternalGC(Thread* self, ObjPtr<mirror::Object>* obj)
       REQUIRES_SHARED(Locks::mutator_lock_)
       REQUIRES(!*gc_complete_lock_, !*pending_task_lock_, !process_state_update_lock_);
   EXPORT void PushOnThreadLocalAllocationStackWithInternalGC(Thread* thread,

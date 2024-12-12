@@ -3709,7 +3709,7 @@ collector::GcType Heap::WaitForGcToCompleteLocked(GcCause cause, Thread* self, b
 
 void Heap::DumpForSigQuit(std::ostream& os) {
   os << "Heap: " << GetPercentFree() << "% free, " << PrettySize(GetBytesAllocated()) << "/"
-     << PrettySize(GetTotalMemory());
+     << PrettySize(GetTotalMemory()) << "\n";
   {
     os << "Image spaces:\n";
     ScopedObjectAccess soa(Thread::Current());

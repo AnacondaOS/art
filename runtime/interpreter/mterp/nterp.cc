@@ -312,7 +312,7 @@ static constexpr std::array<uint8_t, 256u> GenerateOpcodeInvokeTypes() {
 
 static constexpr std::array<uint8_t, 256u> kOpcodeInvokeTypes = GenerateOpcodeInvokeTypes();
 
-FLATTEN
+LIBART_PROTECTED FLATTEN
 extern "C" size_t NterpGetMethod(Thread* self, ArtMethod* caller, const uint16_t* dex_pc_ptr)
     REQUIRES_SHARED(Locks::mutator_lock_) {
   UpdateHotness(caller);
@@ -385,6 +385,7 @@ extern "C" size_t NterpGetMethod(Thread* self, ArtMethod* caller, const uint16_t
   }
 }
 
+LIBART_PROTECTED
 extern "C" size_t NterpGetStaticField(Thread* self,
                                       ArtMethod* caller,
                                       const uint16_t* dex_pc_ptr,
@@ -440,6 +441,7 @@ extern "C" size_t NterpGetStaticField(Thread* self,
   }
 }
 
+LIBART_PROTECTED
 extern "C" uint32_t NterpGetInstanceFieldOffset(Thread* self,
                                                 ArtMethod* caller,
                                                 const uint16_t* dex_pc_ptr,
