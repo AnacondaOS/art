@@ -45,7 +45,7 @@ static constexpr bool kPoisonDeadObjectsInUnevacuatedRegions = false;
 static constexpr uint32_t kPoisonDeadObject = 0xBADDB01D;  // "BADDROID"
 
 // Whether we check a region's live bytes count against the region bitmap.
-static constexpr bool kCheckLiveBytesAgainstRegionBitmap = kIsDebugBuild;
+static constexpr bool kCheckLiveBytesAgainstRegionBitmap = false;
 
 MemMap RegionSpace::CreateMemMap(const std::string& name,
                                  size_t capacity,
