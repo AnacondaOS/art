@@ -243,6 +243,11 @@ art_cc_library {
                 enabled: false,
             },
         },
+        android: {
+            lto: {
+                thin: true,
+            },
+        },
         android_arm64: {
             cflags: [
                 "-fsplit-machine-functions",
