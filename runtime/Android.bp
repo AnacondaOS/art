@@ -923,7 +923,10 @@ art_cc_library {
             },
         },
         android_arm64: {
-            cflags: ["-fsplit-machine-functions"],
+            cflags: [
+                "-fsplit-machine-functions",
+                "-O3",
+            ],
             ldflags: ["-fsplit-machine-functions"],
         }
     },
