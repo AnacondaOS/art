@@ -29,7 +29,7 @@
 
 namespace art HIDDEN {
 
-constexpr bool kObjPtrPoisoning = kIsDebugBuild;
+constexpr bool kObjPtrPoisoning = false;
 
 // It turns out that most of the performance overhead comes from copying. Don't validate for now.
 // This defers finding stale ObjPtr objects until they are used.
