@@ -57,7 +57,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * A helper class to handle dexopt.
@@ -128,9 +127,7 @@ public class DexoptHelper {
             // create a separate cancellation signal for each of them so that the listeners don't
             // overwrite each other.
             List<CancellationSignal> childCancellationSignals =
-                    pkgStates.stream()
-                            .map(pkgState -> new CancellationSignal())
-                            .collect(Collectors.toList());
+                    pkgStates.stream().map(pkgState -> new CancellationSignal()).toList();
             cancellationSignal.setOnCancelListener(() -> {
                 for (CancellationSignal childCancellationSignal : childCancellationSignals) {
                     childCancellationSignal.cancel();
@@ -187,8 +184,7 @@ public class DexoptHelper {
                 }
             }
 
-            List<PackageDexoptResult> results =
-                    futures.stream().map(Utils::getFuture).collect(Collectors.toList());
+            List<PackageDexoptResult> results = futures.stream().map(Utils::getFuture).toList();
 
             var result =
                     DexoptResult.create(params.getCompilerFilter(), params.getReason(), results);
@@ -200,7 +196,7 @@ public class DexoptHelper {
                     List<PackageDexoptResult> filteredResults =
                             results.stream()
                                     .filter(PackageDexoptResult::hasUpdatedArtifacts)
-                                    .collect(Collectors.toList());
+                                    .toList();
                     if (!filteredResults.isEmpty()) {
                         var resultForCallback = DexoptResult.create(
                                 params.getCompilerFilter(), params.getReason(), filteredResults);
